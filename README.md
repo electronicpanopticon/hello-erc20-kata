@@ -77,9 +77,10 @@ As a token holder I want to allow another address to transfer tokens on my behal
 
 #### Feature: Transfer From
 ```
-
+As a third party I want to be able to transfer Token from one address to another when I've been approved.
 ```
-
+* Approved third party address is able to transfer tokens from an approved address to another address
+* Emits a Transfer Event
 
 
 
