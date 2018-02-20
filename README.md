@@ -18,6 +18,26 @@ $> brew install ethereum
 $> npm install -g truffle
 $> npm install -g ganache-cli
 ```
+* Install Dev Dependencies
+```
+$> npm install babel-polyfill babel-register babel-preset-es2015 --save-dev
+$> npm install babel-preset-stage-2 babel-preset-stage-3 --save-dev
+$> npm install chai chai-as-promised chai-bignumber --save-dev
+$> npm install mocha-logger --save-dev
+```
+
+* Add .babelrc file
+```
+{
+  "presets": ["es2015", "stage-2", "stage-3"]
+}
+```
+
+* Add babel to truffle-config.js
+```
+require('babel-register');
+require('babel-polyfill');
+```
 
 ## Requirements
 
