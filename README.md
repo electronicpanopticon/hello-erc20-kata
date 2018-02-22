@@ -39,6 +39,18 @@ require('babel-register');
 require('babel-polyfill');
 ```
 
+## Testing
+
+* In one console, start ganache-cli
+```
+$> ganache cli
+```
+
+* In a separate console, run truffle test
+```
+$> truffle test
+```
+
 ## Requirements
 
 ### Iteration 1 - Basic Token
