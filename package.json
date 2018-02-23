@@ -1,0 +1,27 @@
+{
+  "name": "hello-erc20-kata",
+  "version": "1.0.0",
+  "description": "Implementation of a test-driven ERC20 contract",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electronicpanopticon/hello-erc20-kata.git"
+  },
+  "keywords": [
+    "truffle",
+    "ethereum",
+    "tdd"
+  ],
+  "author": "Christoph",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/electronicpanopticon/hello-erc20-kata/issues"
+  },
+  "homepage": "https://github.com/electronicpanopticon/hello-erc20-kata#readme"
+}
