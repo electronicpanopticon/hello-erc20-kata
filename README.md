@@ -2,35 +2,6 @@
 
 Simple kata to create an ERC20 fixed supply Token.
 
-## Setup
-
-* Install [Homebrew](https://brew.sh/)
-* Install [Node](https://nodejs.org/)
-* Install [Geth](https://www.ethereum.org/cli)
-```
-$> brew update
-$> brew upgrade
-$> brew tap ethereum/ethereum
-$> brew install ethereum
-```
-* Install [Truffle](http://truffleframework.com/) and [ganache-cli](https://github.com/trufflesuite/ganache-cli)
-```
-$> npm install -g truffle
-$> npm install -g ganache-cli
-```
-
-## Testing
-
-* In one console, start ganache-cli
-```
-$> ganache cli
-```
-
-* In a separate console, run truffle test
-```
-$> truffle test
-```
-
 ## Requirements
 
 ### Iteration 1 - Basic Token
