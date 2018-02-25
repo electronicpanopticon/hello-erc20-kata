@@ -18,26 +18,6 @@ $> brew install ethereum
 $> npm install -g truffle
 $> npm install -g ganache-cli
 ```
-* Install Dev Dependencies
-```
-$> npm install babel-polyfill babel-register babel-preset-es2015 --save-dev
-$> npm install babel-preset-stage-2 babel-preset-stage-3 --save-dev
-$> npm install chai chai-as-promised chai-bignumber --save-dev
-$> npm install mocha-logger --save-dev
-```
-
-* Add .babelrc file
-```
-{
-  "presets": ["es2015", "stage-2", "stage-3"]
-}
-```
-
-* Add babel to truffle-config.js
-```
-require('babel-register');
-require('babel-polyfill');
-```
 
 ## Testing
 
@@ -57,7 +37,7 @@ $> truffle test
 
 #### Feature: Create a Basic Token Class
 ```
-As a Token Contract I want to have a name, and symbol that distinguishes me. 
+As a Token Contract I want to have a name, and symbol that distinguishes me.
 ```
 * Can get the Token's name as a public field
 * Can get the Token's three character symbol as a public field
@@ -95,7 +75,7 @@ As a Token Contract I want to emit a Transfer event when the transfer function i
 
 #### Feature: Allowance
 ```
-As an Blockchain User I want to be able to see how many tokens a Token holder has allowed someone else to spend on their behalf. 
+As an Blockchain User I want to be able to see how many tokens a Token holder has allowed someone else to spend on their behalf.
 ```
 * passing in owner and spender addresses returns amount
 * returns zero if none have been approbed
