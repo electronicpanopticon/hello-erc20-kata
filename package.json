@@ -24,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/electronicpanopticon/hello-erc20-kata/issues"
   },
-  "homepage": "https://github.com/electronicpanopticon/hello-erc20-kata#readme"
+  "homepage": "https://github.com/electronicpanopticon/hello-erc20-kata#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha-logger": "^1.0.5"
+  }
 }
