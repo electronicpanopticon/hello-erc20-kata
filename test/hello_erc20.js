@@ -1,6 +1,10 @@
+const BigNumber = web3.BigNumber;
 const mlog = require('mocha-logger');
 const util = require('util');
-require('chai').should();
+
+require('chai')
+  .use(require('chai-bignumber')(BigNumber))
+  .should();
 
 const HelloErc20 = artifacts.require('HelloERC20');
 
@@ -16,6 +20,10 @@ contract('HelloERC20', ([owner]) => {
     it('it should have the correct symbol', async () => {
       const symbol = await this.hello_erc20.symbol();
       symbol.should.be.equal("HE2");
+    });
+    it('it should have the correct decimal level', async () => {
+      const decimals = await this.hello_erc20.decimals();
+      decimals.should.be.bignumber.equal(18);
     });
   });
 });
