@@ -4,11 +4,11 @@ Simple kata to create an ERC20 fixed supply Token.
 
 ## Requirements
 
-### Iteration 1 - Basic Token
+### Iteration 1 - Token Metadata
 
-#### Feature: Create a Basic Token Class
+#### Feature: Token Contract Metadata 
 ```
-As a Token Contract I want to have a name, and symbol that distinguishes me.
+As a Token Contract I want to have standard metadata field.
 ```
 * Can get the Token's name as a public field
 * Can get the Token's three character symbol as a public field
@@ -18,6 +18,8 @@ As a Token Contract I want to have a name, and symbol that distinguishes me.
 As a Token Contract I want to set the decimal level.
 ```
 * Can get the Token's decimal level as a public field
+
+### Iteration 2 - Basic Token
 
 #### Feature: Fixed Token Supply
 ```
@@ -42,7 +44,7 @@ As a Token Contract I want to emit a Transfer event when the transfer function i
 ```
 * Should be able to read a Transfer Event off of the event logs
 
-### Iteration 2 - ERC20 Token
+### Iteration 3 - ERC20 Token
 
 #### Feature: Allowance
 ```
