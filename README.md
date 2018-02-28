@@ -8,7 +8,7 @@ Simple kata to create an ERC20 fixed supply Token.
 
 #### Feature: Token Contract Metadata 
 ```
-As a Token Contract I want to have standard metadata field.
+As a Token Contract I want to have standard metadata fields.
 ```
 * Can get the Token's name as a public field
 * Can get the Token's three character symbol as a public field
