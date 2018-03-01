@@ -2,62 +2,13 @@
 
 Simple kata to create an ERC20 fixed supply Token.
 
-## Setup
-
-* Install [Homebrew](https://brew.sh/)
-* Install [Node](https://nodejs.org/)
-* Install [Geth](https://www.ethereum.org/cli)
-```
-$> brew update
-$> brew upgrade
-$> brew tap ethereum/ethereum
-$> brew install ethereum
-```
-* Install [Truffle](http://truffleframework.com/) and [ganache-cli](https://github.com/trufflesuite/ganache-cli)
-```
-$> npm install -g truffle
-$> npm install -g ganache-cli
-```
-* Install Dev Dependencies
-```
-$> npm install babel-polyfill babel-register babel-preset-es2015 --save-dev
-$> npm install babel-preset-stage-2 babel-preset-stage-3 --save-dev
-$> npm install chai chai-as-promised chai-bignumber --save-dev
-$> npm install mocha-logger --save-dev
-```
-
-* Add .babelrc file
-```
-{
-  "presets": ["es2015", "stage-2", "stage-3"]
-}
-```
-
-* Add babel to truffle-config.js
-```
-require('babel-register');
-require('babel-polyfill');
-```
-
-## Testing
-
-* In one console, start ganache-cli
-```
-$> ganache cli
-```
-
-* In a separate console, run truffle test
-```
-$> truffle test
-```
-
 ## Requirements
 
-### Iteration 1 - Basic Token
+### Iteration 1 - Token Metadata
 
-#### Feature: Create a Basic Token Class
+#### Feature: Token Contract Metadata
 ```
-As a Token Contract I want to have a name, and symbol that distinguishes me. 
+As a Token Contract I want to have standard metadata fields.
 ```
 * Can get the Token's name as a public field
 * Can get the Token's three character symbol as a public field
@@ -67,6 +18,8 @@ As a Token Contract I want to have a name, and symbol that distinguishes me.
 As a Token Contract I want to set the decimal level.
 ```
 * Can get the Token's decimal level as a public field
+
+### Iteration 2 - Basic Token
 
 #### Feature: Fixed Token Supply
 ```
@@ -91,11 +44,11 @@ As a Token Contract I want to emit a Transfer event when the transfer function i
 ```
 * Should be able to read a Transfer Event off of the event logs
 
-### Iteration 2 - ERC20 Token
+### Iteration 3 - ERC20 Token
 
 #### Feature: Allowance
 ```
-As an Blockchain User I want to be able to see how many tokens a Token holder has allowed someone else to spend on their behalf. 
+As an Blockchain User I want to be able to see how many tokens a Token holder has allowed someone else to spend on their behalf.
 ```
 * passing in owner and spender addresses returns amount
 * returns zero if none have been approbed
@@ -113,6 +66,4 @@ As a third party I want to be able to transfer Token from one address to another
 ```
 * Approved third party address is able to transfer tokens from an approved address to another address
 * Emits a Transfer Event
-
-
 
