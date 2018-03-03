@@ -31,8 +31,12 @@ contract('HelloERC20', ([owner]) => {
     describe('Given that I have a fixed supply of tokens', () => {
       it('it should return the total supply of tokens for the Contract', async () => {
         const supply = await this.hello_erc20.totalSupply();
-        supply.should.be.bignumber.equal(TOKEN_COUNT);
+        supply.should.be.bignumber.equal(toWei(TOKEN_COUNT));
       });
     });
   });
 });
+
+function toWei(count) {
+  return count * 10 ** 18
+}
