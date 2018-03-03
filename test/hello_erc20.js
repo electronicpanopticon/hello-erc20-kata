@@ -9,6 +9,8 @@ require('chai')
 const HelloErc20 = artifacts.require('HelloERC20');
 
 contract('HelloERC20', ([owner]) => {
+  const TOKEN_COUNT = 1000000;
+
   beforeEach(async () => {
     this.hello_erc20 = await HelloErc20.new({ from: owner });
   });
@@ -24,6 +26,13 @@ contract('HelloERC20', ([owner]) => {
     it('it should have the correct decimal level', async () => {
       const decimals = await this.hello_erc20.decimals();
       decimals.should.be.bignumber.equal(18);
+    });
+
+    describe('Given that I have a fixed supply of tokens', () => {
+      it('it should return the total supply of tokens for the Contract', async () => {
+        const supply = await this.hello_erc20.totalSupply();
+        supply.should.be.bignumber.equal(TOKEN_COUNT);
+      });
     });
   });
 });
