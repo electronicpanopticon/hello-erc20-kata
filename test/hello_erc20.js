@@ -8,7 +8,7 @@ require('chai')
 
 const HelloErc20 = artifacts.require('HelloERC20');
 
-contract('HelloERC20', ([owner]) => {
+contract('HelloERC20', ([owner, holder, nilAddress]) => {
   const TOKEN_COUNT = 1000000;
 
   beforeEach(async () => {
@@ -32,6 +32,20 @@ contract('HelloERC20', ([owner]) => {
       it('it should return the total supply of tokens for the Contract', async () => {
         const supply = await this.hello_erc20.totalSupply();
         supply.should.be.bignumber.equal(toWei(TOKEN_COUNT));
+      });
+      it('the owner should have all the tokens when the Contract is created', async () => {
+        const balance = await this.hello_erc20.balanceOf(owner);
+        balance.should.be.bignumber.equal(toWei(TOKEN_COUNT));
+      });
+      it('any account should have the tokens transfered to it', async () => {
+        const amount = toWei(10);
+        await this.hello_erc20.transfer(holder, amount)
+        const balance = await this.hello_erc20.balanceOf(holder);
+        balance.should.be.bignumber.equal(amount);
+      });
+      it('an address that has no tokens should return a balance of zero', async () => {
+        const balance = await this.hello_erc20.balanceOf(nilAddress);
+        balance.should.be.bignumber.equal(0);
       });
     });
   });
