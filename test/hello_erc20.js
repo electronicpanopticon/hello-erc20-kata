@@ -8,7 +8,7 @@ require('chai')
 
 const HelloErc20 = artifacts.require('HelloERC20');
 
-contract('HelloERC20', ([owner, holder, nilAddress]) => {
+contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
   const TOKEN_COUNT = 1000000;
 
   beforeEach(async () => {
@@ -56,6 +56,15 @@ contract('HelloERC20', ([owner, holder, nilAddress]) => {
             hasError = false; // Should be unreachable
           } catch(err) { }
           assert.equal(true, hasError, "Function not throwing exception on transfer to self");
+        });
+        it('it should not let someone transfer tokens they do not have', async () => {
+          var hasError = true;
+          try {
+            await this.hello_erc20.transfer(holder, toWei(10), { from: owner })
+            await this.hello_erc20.transfer(receiver, toWei(20), { from: holder })
+            hasError = false;
+          } catch(err) { }
+          assert.equal(true, hasError, "Insufficient funds");
         });
       });
     });

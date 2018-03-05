@@ -25,6 +25,7 @@
 
     function transfer(address to, uint tokens) public returns (bool success) {
       require(msg.sender != to);
+      require(balances[msg.sender] >= tokens);
       balances[msg.sender] = balances[msg.sender] - tokens;
       balances[to] = balances[to] + tokens;
       return true;
