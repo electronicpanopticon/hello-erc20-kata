@@ -47,6 +47,17 @@ contract('HelloERC20', ([owner, holder, nilAddress]) => {
         const balance = await this.hello_erc20.balanceOf(nilAddress);
         balance.should.be.bignumber.equal(0);
       });
+      describe('Given that I want to be able to transfer tokens', () => {
+        it('it should not let me transfer tokens to myself', async () => {
+          var hasError = true;
+          try {
+            const amount = toWei(10);
+            await this.hello_erc20.transfer(owner, amount, { from: owner })
+            hasError = false; // Should be unreachable
+          } catch(err) { }
+          assert.equal(true, hasError, "Function not throwing exception on transfer to self");
+        });
+      });
     });
   });
 });
