@@ -66,6 +66,16 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
           } catch(err) { }
           assert.equal(true, hasError, "Insufficient funds");
         });
+        it('it should emit a Transfer Event', async () => {
+          const amount = toWei(10);
+          const { logs } = await this.hello_erc20.transfer(holder, amount, { from: owner });
+
+          assert.equal(logs.length, 1, 'No Transfer Event emitted');
+          assert.equal(logs[0].event, 'Transfer');
+          assert.equal(logs[0].args.from, owner);
+          assert.equal(logs[0].args.to, holder);
+          assert.equal(logs[0].args.tokens, amount);
+        });
       });
     });
   });

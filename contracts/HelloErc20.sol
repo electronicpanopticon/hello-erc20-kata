@@ -37,6 +37,8 @@ contract HelloErc20 {
 
   mapping(address => uint256) balances;
 
+  event Transfer(address indexed from, address indexed to, uint tokens);
+
   function HelloErc20() public {
     owner = msg.sender;
     balances[owner] = fixedSupply;
@@ -54,6 +56,7 @@ contract HelloErc20 {
     require(msg.sender != to);
     balances[msg.sender] = balances[msg.sender].sub(tokens);
     balances[to] = balances[to].add(tokens);
+    Transfer(msg.sender, to, tokens);
     return true;
   }
 }
