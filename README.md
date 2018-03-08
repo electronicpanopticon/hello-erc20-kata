@@ -51,7 +51,7 @@ As a Token Contract I want to emit a Transfer event when the transfer function i
 As an Blockchain User I want to be able to see how many tokens a Token holder has allowed someone else to spend on their behalf.
 ```
 * passing in owner and spender addresses returns amount
-* returns zero if none have been approbed
+* returns zero if none have been approved
 
 #### Feature: Approve
 ```
