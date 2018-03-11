@@ -36,6 +36,7 @@ contract HelloErc20 {
   uint256 fixedSupply = 1000000 * 10 ** uint(decimals);
 
   mapping(address => uint256) balances;
+  mapping(address => mapping(address => uint256)) allowed;
 
   event Transfer(address indexed from, address indexed to, uint tokens);
 
@@ -52,11 +53,20 @@ contract HelloErc20 {
     return balances[_tokenOwner];
   }
 
-  function transfer(address to, uint tokens) public returns (bool success) {
-    require(msg.sender != to);
-    balances[msg.sender] = balances[msg.sender].sub(tokens);
-    balances[to] = balances[to].add(tokens);
-    Transfer(msg.sender, to, tokens);
+  function transfer(address _to, uint _tokens) public returns (bool success) {
+    require(msg.sender != _to);
+    balances[msg.sender] = balances[msg.sender].sub(_tokens);
+    balances[_to] = balances[_to].add(_tokens);
+    Transfer(msg.sender, _to, _tokens);
+    return true;
+  }
+
+  function allowance(address _tokenOwner, address _spender) public constant returns (uint remaining) {
+    return allowed[_tokenOwner][_spender];
+  }
+
+  function approve(address _spender, uint _tokens) public returns (bool success) {
+    allowed[msg.sender][_spender] = _tokens;
     return true;
   }
 }

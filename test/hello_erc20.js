@@ -76,6 +76,23 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
           assert.equal(logs[0].args.to, holder);
           assert.equal(logs[0].args.tokens, amount);
         });
+
+        describe('Given that I want to allow the transfer of tokens by a third party', () => {
+          it('it should return the amount I allow them to transfer', async () => {
+            const amount = toWei(99);
+            await this.hello_erc20.approve(holder, amount, { from: owner });
+            const remaining = await this.hello_erc20.allowance(owner, holder);
+            remaining.should.be.bignumber.equal(amount);
+          });
+          it('it should return the amount another allows a third account to transfer', async () => {
+            const amount = toWei(98);
+            await this.hello_erc20.transfer(holder, toWei(100))
+            await this.hello_erc20.approve(receiver, amount, { from: holder });
+            const remaining = await this.hello_erc20.allowance(holder, receiver);
+            remaining.should.be.bignumber.equal(amount);
+          });
+        });
+
       });
     });
   });
