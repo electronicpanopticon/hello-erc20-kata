@@ -95,6 +95,16 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
             const remaining = await this.hello_erc20.allowance(owner, nilAddress);
             remaining.should.be.bignumber.equal(0);
           });
+          it('it should emit an Approval event when the approve method is successfully called', async () => {
+            const amount = toWei(97);
+            const { logs } = await this.hello_erc20.approve(holder, amount, { from: owner });
+
+            assert.equal(logs.length, 1, 'No Approval Event emitted');
+            assert.equal(logs[0].event, 'Approval');
+            assert.equal(logs[0].args.tokenOwner, owner);
+            assert.equal(logs[0].args.spender, holder);
+            assert.equal(logs[0].args.tokens, amount);
+          });
         });
       });
     });

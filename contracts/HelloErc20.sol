@@ -38,6 +38,7 @@ contract HelloErc20 {
   mapping(address => uint256) balances;
   mapping(address => mapping(address => uint256)) allowed;
 
+  event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
   event Transfer(address indexed from, address indexed to, uint tokens);
 
   function HelloErc20() public {
@@ -67,6 +68,7 @@ contract HelloErc20 {
 
   function approve(address _spender, uint _tokens) public returns (bool success) {
     allowed[msg.sender][_spender] = _tokens;
+    Approval(msg.sender, _spender, _tokens);
     return true;
   }
 }
