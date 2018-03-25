@@ -105,6 +105,15 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
             assert.equal(logs[0].args.spender, holder);
             assert.equal(logs[0].args.tokens, amount);
           });
+          it('transferFrom should transfer tokens when triggered by an approved third party', async () => {
+            const tokenAmount = 96;
+            const amount = toWei(tokenAmount);
+            await this.hello_erc20.approve(holder, amount, { from: owner });
+            await this.hello_erc20.transferFrom(owner, receiver, amount, { from: holder });
+            const balance = await this.hello_erc20.balanceOf(receiver, { from: receiver });
+
+            balance.should.be.bignumber.equal(toWei(tokenAmount));
+          });
         });
       });
     });

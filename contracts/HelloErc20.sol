@@ -71,4 +71,10 @@ contract HelloErc20 {
     Approval(msg.sender, _spender, _tokens);
     return true;
   }
+
+  function transferFrom(address _from, address _to, uint _tokens) public returns (bool) {
+    balances[_from] = balances[_from].sub(_tokens);
+    balances[_to] = balances[_to].add(_tokens);
+    return true;
+  }
 }
