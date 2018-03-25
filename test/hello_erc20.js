@@ -114,6 +114,15 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress]) => {
 
             balance.should.be.bignumber.equal(toWei(tokenAmount));
           });
+          it('the account funds are being transferred from should have sufficient funds', async () => {
+            var hasError = true;
+            try {
+              const amount = toWei(95);
+              await this.hello_erc20.approve(receiver, amount, { from: holder });
+              await this.hello_erc20.transferFrom(receiver, nilAddress, amount, { from: receiver });
+            } catch(err) { }
+            assert.equal(true, hasError, "Insufficient funds");
+          });
         });
       });
     });
