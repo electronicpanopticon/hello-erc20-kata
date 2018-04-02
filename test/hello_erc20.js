@@ -143,6 +143,17 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress, accountWith99]) =>
             } catch(err) { }
             assert.equal(true, hasError, "Unauthorized account should not be allowed transfer funds.");
           });
+          it('An authorized accounts allowance should go down when transferFrom is called', async () => {
+            const amount = toWei(15);
+            await this.hello_erc20.approve(holder, amount, { from: owner });
+            var allowance = await this.hello_erc20.allowance(owner, holder);
+            allowance.should.be.bignumber.equal(amount);
+
+            await this.hello_erc20.transferFrom(owner, receiver, toWei(7), { from: holder });
+
+            allowance = await this.hello_erc20.allowance(owner, holder);
+            allowance.should.be.bignumber.equal(toWei(8));
+          });
         });
       });
     });
