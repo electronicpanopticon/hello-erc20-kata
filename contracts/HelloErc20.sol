@@ -73,6 +73,8 @@ contract HelloErc20 {
   }
 
   function transferFrom(address _from, address _to, uint _tokens) public returns (bool) {
+    require(_tokens <= allowed[_from][msg.sender]);
+
     balances[_from] = balances[_from].sub(_tokens);
     balances[_to] = balances[_to].add(_tokens);
     return true;

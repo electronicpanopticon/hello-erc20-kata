@@ -125,8 +125,23 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress, accountWith99]) =>
 
               await this.hello_erc20.approve(receiver, amount, { from: accountWith99 });
               await this.hello_erc20.transferFrom(accountWith99, nilAddress, amount, { from: receiver });
+              asError = false;
             } catch(err) { }
             assert.equal(true, hasError, "Function not throwing exception for insufficient funds");
+          });
+          it('should throw exception when attempting to transferFrom unauthorized account', async () => {
+            var hasError = true;
+            try {
+              const remaining = await this.hello_erc20.allowance(owner, nilAddress);
+              remaining.should.be.bignumber.equal(toWei(0));
+              var holderBalance = await this.hello_erc20.balanceOf(holder);
+              holderBalance.should.be.bignumber.equal(toWei(0));
+              const amount = toWei(101);
+
+              await this.hello_erc20.transferFrom(owner, holder, amount, { from: nilAddress });
+              asError = false;
+            } catch(err) { }
+            assert.equal(true, hasError, "Unauthorized account should not be allowed transfer funds.");
           });
         });
       });
