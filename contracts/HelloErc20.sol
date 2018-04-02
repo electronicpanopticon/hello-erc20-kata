@@ -78,6 +78,7 @@ contract HelloErc20 {
     balances[_from] = balances[_from].sub(_tokens);
     balances[_to] = balances[_to].add(_tokens);
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_tokens);
+    Transfer(_from, _to, _tokens);
     return true;
   }
 }

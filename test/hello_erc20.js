@@ -154,6 +154,18 @@ contract('HelloERC20', ([owner, holder, receiver, nilAddress, accountWith99]) =>
             allowance = await this.hello_erc20.allowance(owner, holder);
             allowance.should.be.bignumber.equal(toWei(8));
           });
+          it('it should emit a Transfer event when transferFrom is called', async () => {
+            const amount = toWei(17);
+            await this.hello_erc20.approve(holder, amount, { from: owner });
+
+            const { logs } = await this.hello_erc20.transferFrom(owner, receiver, amount, { from: holder });
+
+            assert.equal(logs.length, 1, 'No Transfer Event emitted');
+            assert.equal(logs[0].event, 'Transfer');
+            assert.equal(logs[0].args.from, owner);
+            assert.equal(logs[0].args.to, receiver);
+            assert.equal(logs[0].args.tokens, amount);
+          });
         });
       });
     });
