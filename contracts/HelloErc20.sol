@@ -58,7 +58,7 @@ contract HelloErc20 {
     require(msg.sender != _to);
     balances[msg.sender] = balances[msg.sender].sub(_tokens);
     balances[_to] = balances[_to].add(_tokens);
-    Transfer(msg.sender, _to, _tokens);
+    emit Transfer(msg.sender, _to, _tokens);
     return true;
   }
 
@@ -68,7 +68,7 @@ contract HelloErc20 {
 
   function approve(address _spender, uint _tokens) public returns (bool success) {
     allowed[msg.sender][_spender] = _tokens;
-    Approval(msg.sender, _spender, _tokens);
+    emit Approval(msg.sender, _spender, _tokens);
     return true;
   }
 
@@ -78,7 +78,7 @@ contract HelloErc20 {
     balances[_from] = balances[_from].sub(_tokens);
     balances[_to] = balances[_to].add(_tokens);
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_tokens);
-    Transfer(_from, _to, _tokens);
+    emit Transfer(_from, _to, _tokens);
     return true;
   }
 }
